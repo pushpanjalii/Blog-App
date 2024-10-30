@@ -1,4 +1,0 @@
-//cors package is used to connect frontend and backend together
-//multer package is used for middleware
-
-//nodemon is not installed bcz i already have it.

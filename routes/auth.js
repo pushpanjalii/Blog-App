@@ -1,6 +1,7 @@
 const express = require('express')
-const  router = express.router();
-const User = require("../models/user")
+const  router = express.Router();
+const newLocal = "../models/user";
+const User = require(newLocal)
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -70,5 +71,5 @@ router.get("/refetch", (req,res) => {
     })
 })
 
-module.exports=router
+module.exports = router;
 
