@@ -3,15 +3,18 @@ const router = express.Router();
 const newLocal = '../models/User.js';
 const User = require(newLocal)
 const bcrypt = require('bcrypt')
-const post = require('./post.js')
-const comment = require('./comment.js')
+const post = require('../models/Post.js')
+const comment = require('../models/Comment.js')
 const verifyToken = require('../verifyToken.js')
 
 //create
 router.post("/create", verifyToken,async(req,res) => {
 try{
-const newPost = new Post(req.body)
+    console.log(req.body);
+const newPost = new post(req.body)
+console.log(newPost);
 const savedPost = await newPost.save()
+console.log(savedPost);
 res.status(200).json(savedPost)
 } catch(err) {
 res.status(500).json(err)
