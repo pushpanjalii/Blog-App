@@ -11,7 +11,7 @@ router.post("/register", async(req,res) => {
         const{username,email,password} = req.body
         const salt = await bcrypt.genSalt(10)  //10 random number to be added in password.
         const hashpassword = await bcrypt.hashSync(password, salt)
-        const newUser = new User({
+        const newUser = new user({
             username,email,password:hashpassword
         })
 const savedUser = await newUser.save()
@@ -28,7 +28,7 @@ router.post("/login", async(req,res) => {
     try{
         const user = await User.findOne({email:req.body.email})
         if(!user){
-            return res.status(404).json("User not  found!")
+            return res.status(404).json("User not found!")
         }
         const match = await bcrypt.compare(req.body.password, user.password)
         if(!match) {
