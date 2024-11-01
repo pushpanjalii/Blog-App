@@ -1,6 +1,6 @@
 const express = require('express')
 const  router = express.Router();
-const newLocal = "../models/user";
+const newLocal = "../models/User.js";
 const User = require(newLocal)
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
