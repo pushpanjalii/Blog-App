@@ -10,11 +10,10 @@ const verifyToken = require('../verifyToken.js')
 //create
 router.post("/create", verifyToken,async(req,res) => {
 try{
-    console.log(req.body);
 const newPost = new post(req.body)
-console.log(newPost);
+// console.log(newPost);
 const savedPost = await newPost.save()
-console.log(savedPost);
+// console.log(savedPost);
 res.status(200).json(savedPost)
 } catch(err) {
 res.status(500).json(err)
@@ -24,9 +23,11 @@ res.status(500).json(err)
 //update
 router.put("/:id", verifyToken, async(req,res) => {
     try{
+        console.log(req.body);
+        console.log(req.params);
         const updatePost = await post.findByIDAndUpdate(req.params.id,{$set:reqbody},{new:true})
 res.status(200).json(updatePost)
-    } catch(er) {
+    } catch(err) {
         res.status(500).json(err)
     }
 })

@@ -23,7 +23,7 @@ router.put("/:id", verifyToken, async(req,res) => {
     try{
         const updateComment = await comment.findByIDAndUpdate(req.params.id,{$set:reqbody},{new:true})
 res.status(200).json(updateComment)
-    } catch(er) {
+    } catch(err) {
         res.status(500).json(err)
     }
 })
