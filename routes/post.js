@@ -3,7 +3,7 @@ const router = express.Router();
 const newLocal = '../models/User.js';
 const User = require(newLocal)
 const bcrypt = require('bcrypt')
-const post = require('../models/Post.js')
+const post = require('../models/post.js')
 const comment = require('../models/Comment.js')
 const verifyToken = require('../verifyToken.js')
 
