@@ -9,7 +9,8 @@ const cookieParser = require('cookie-parser');
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/user')
 const postRoute = require('./routes/post')
-const commentRoute = require('./routes/comment')
+const commentRoute = require('./routes/comment');
+const { $where } = require('./models/User');
 
 
 
@@ -59,11 +60,25 @@ app.post("api/upload", upload.single("file"), (req,res) => {
 
 
 
+app.get('/', (req, res) => {
+    res.status(200).send('Server up and running')
+  })
+    
+  const port = process.env.PORT ||3000; // Set the desired port number ;
+  
+  const startServer = async () => {
+    await connectDB();
+    app.listen(port, () => {
+      console.log("Backend server is running on port:3000" );
+    });
+  };
+  
+  startServer();
 
-app.listen(process.env.PORT, () => {
-    connectDB();
-    console.log("app is listening on port" + process.env.PORT)
-})
+// app.listen(process.env.PORT, () => {
+//     connectDB();
+//     console.log("app is listening on port" + process.env.PORT)
+// })
 
 
 
