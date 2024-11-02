@@ -21,11 +21,12 @@ res.status(500).json(err)
 })
 
 //update
-router.put("/posts/:id", verifyToken, async(req,res) => {
+router.put("/:id", verifyToken, async(req,res) => {
     try{
         console.log(req.body);
+        console.log(req.params);
         const updatedData = req.body
-        const updatePost = await post.findByIDAndUpdate(req.params.id, updatedData,{new:true})
+        const updatePost = await post.findByIdAndUpdate(req.params.id, updatedData,{new:true})
 res.status(200).json(updatePost)
     } catch(err) {
         res.status(500).json(err)
