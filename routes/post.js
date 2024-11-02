@@ -34,9 +34,9 @@ res.status(200).json(updatePost)
 })
 
 //delete
-router.delete("/posts/:id", async(req,res) => {
+router.delete("/:id", async(req,res) => {
     try{
-await post.findByIDAndDelete(req.params.id)
+await post.findByIdAndDelete(req.params.id)
 await comment.deleteMany({postId:req.params.postId})
 res.status(200).json("Post deleted")
     } catch(err) {
@@ -45,9 +45,9 @@ res.status(200).json("Post deleted")
 })
 
 //get post details
-router.get("/posts/:id", async(req,res) => {
+router.get("/:id", async(req,res) => {
     try{
-const post = await this.post.findByIDAnd(req.params.id)
+const post = await this.post.findByIdAnd(req.params.id)
 res.status(200).json(post)
     } catch(err) {
         res.status(500).json(err)
