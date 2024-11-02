@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
   const startServer = async () => {
     await connectDB();
     app.listen(port, () => {
-      console.log("Backend server is running on port:3000" );
+      console.log(`Backend server is running on ${port}` );
     });
   };
   

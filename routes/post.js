@@ -48,9 +48,9 @@ res.status(200).json("Post deleted")
 router.get("/:id", async(req,res) => {
     try{
         console.log(req.params.id);
-const post = await post.findOne({_id:newObjectId(req.params.id)});
-console.log(post);
-res.status(200).json(post);
+const reqposts = await post.findById(req.params.id);
+console.log(reqposts);
+res.status(200).json(reqposts);
     } catch(err) {
         res.status(500).json(err)
     }
