@@ -6,9 +6,9 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const authRoute = require('./routes/auth')
-const userRoute = require('./routes/user')
-const postRoute = require('./routes/post')
+const authRoute = require('./routes/auth');
+const userRoute = require('./routes/user');
+const postRoute = require('./routes/post');
 const commentRoute = require('./routes/comment');
 const { $where } = require('./models/User');
 
@@ -33,7 +33,7 @@ const connectDB = async() => {
 
 //middleware
 dotenv.config()
-app.use(express.json())
+app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "images")))
 console.log(cors())

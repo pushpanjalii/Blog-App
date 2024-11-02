@@ -21,11 +21,11 @@ res.status(500).json(err)
 })
 
 //update
-router.put("/:id", verifyToken, async(req,res) => {
+router.put("/posts/:id", verifyToken, async(req,res) => {
     try{
         console.log(req.body);
-        console.log(req.params);
-        const updatePost = await post.findByIDAndUpdate(req.params.id,{$set:reqbody},{new:true})
+        const updatedData = req.body
+        const updatePost = await post.findByIDAndUpdate(req.params.id, updatedData,{new:true})
 res.status(200).json(updatePost)
     } catch(err) {
         res.status(500).json(err)
@@ -33,7 +33,7 @@ res.status(200).json(updatePost)
 })
 
 //delete
-router.delete("/:id", async(req,res) => {
+router.delete("/posts/:id", async(req,res) => {
     try{
 await post.findByIDAndDelete(req.params.id)
 await comment.deleteMany({postId:req.params.postId})
@@ -44,7 +44,7 @@ res.status(200).json("Post deleted")
 })
 
 //get post details
-router.get("/:id", async(req,res) => {
+router.get("/posts/:id", async(req,res) => {
     try{
 const post = await this.post.findByIDAnd(req.params.id)
 res.status(200).json(post)
@@ -54,7 +54,7 @@ res.status(200).json(post)
 })
 
 //get post
-router.get("/", async(req,res) => {
+router.get("/posts", async(req,res) => {
     try{
 const searchFilter = {
     title:{$regex:express.query.search, $options:"i"}
