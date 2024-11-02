@@ -47,8 +47,10 @@ res.status(200).json("Post deleted")
 //get post details
 router.get("/:id", async(req,res) => {
     try{
-const post = await this.post.findByIdAnd(req.params.id)
-res.status(200).json(post)
+        console.log(req.params.id);
+const post = await post.findOne({_id:newObjectId(req.params.id)});
+console.log(post);
+res.status(200).json(post);
     } catch(err) {
         res.status(500).json(err)
     }
@@ -71,6 +73,7 @@ res.status(200).json(posts)
 //get user post
 router.get("/user/:userId", async(req,res) => {
     try{
+        console.log(req.params.userId)
 const posts = await post.find({userId:req.params.userId})
 res.status(200).json(posts)
     } catch(err) {
