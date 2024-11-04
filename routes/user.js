@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const user = require('../models/User.js')
+const User = require('../models/User.js')
 const bcrypt = require('bcrypt')
 const post = require('./post.js')
 const comment = require('./comment.js')
@@ -14,7 +14,7 @@ router.put("/:id", verifyToken, async(req,res) => {
         req.body.password = await bcrypt.hashSync(req.body.password, salt);
 
       }
-      const updateduserr = await user.findByIdAndUpdate(req.params.id,
+      const updateduserr = await User.findByIdAndUpdate(req.params.id,
           {$set: req.body},
           {new: true}
       );
@@ -28,9 +28,13 @@ router.put("/:id", verifyToken, async(req,res) => {
 
 router.delete("/:id", verifyToken, async(req,res) => {
     try{
-      await user.findByIdAndDelete(req.params.id)
-      await post.deletMany({userId: req.params.id})
-      await comment.deletMany({userId: req.params.id})
+      console.log(req.params.id);
+      await User.findByIdAndDelete(req.params.id)
+      console.log("user delete");
+      await post.deleteMany({userId:req.params.id})
+      console.log("post delete");
+      await comment.deleteMany({userId:req.params.id})
+      console.log("comment delete");
       res.status(200).json("user deleted successfully !!")
     } catch(err) {
          res.status(500).json(err)
@@ -41,9 +45,9 @@ router.delete("/:id", verifyToken, async(req,res) => {
 //Get User
 router.get("/:id", async(req,res) => {
     try{
-const user = await user.findById(req.params.id)
-const {password, ...info} = user._doc
-res.status(200).json(info)
+const users = await User.findById(req.params.id)
+const {password, ...info} = User._doc
+res.status(200).json(users)
     } catch(err) {
         res.status(500).json(err)
     }
