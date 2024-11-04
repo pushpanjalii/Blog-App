@@ -10,7 +10,7 @@ const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
 const postRoute = require('./routes/post');
 const commentRoute = require('./routes/comment');
-const { $where } = require('./models/User');
+// const { $where } = require('./models/user');
 
 
 
