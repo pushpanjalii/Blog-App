@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const user = require('../models/user.js')
+const user = require('../models/User.js')
 const bcrypt = require('bcrypt')
 const post = require('./post.js')
 const comment = require('./comment.js')
