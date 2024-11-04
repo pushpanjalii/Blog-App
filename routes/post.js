@@ -57,7 +57,7 @@ res.status(200).json(reqposts);
 })
 
 //get post
-router.get("/posts", async(req,res) => {
+router.get("/", async(req,res) => {
     try{
 const searchFilter = {
     title:{$regex:express.query.search, $options:"i"}
