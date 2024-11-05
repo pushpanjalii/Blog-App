@@ -14,7 +14,7 @@ const commentRoute = require('./routes/comment');
 
 
 
-app.use(cors())
+// app.use(cors())
 const corsOptions = {
     origin: '*',
     credential: true,
