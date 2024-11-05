@@ -41,7 +41,6 @@ router.delete("/:id", verifyToken, async(req,res) => {
     }
 })
 
-
 //Get User
 router.get("/:id", async(req,res) => {
     try{
