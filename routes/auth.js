@@ -39,11 +39,16 @@ router.post("/login", async(req,res) => {
         email:user.email}, process.env.SECRET,{expiresIn: "3d"})
         const {password, ...info} = user._doc
         
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure:true,
-            sameSite: 'none',
-        }).status(200).json(info)
+        // res.cookie("token", token, {
+        //     httpOnly: true,
+        //     secure:true,
+        //     sameSite: 'none',
+        // }).status(200).json(info)
+
+        res.json({
+            token,
+            info
+        })
 
     }
     catch(err) {
